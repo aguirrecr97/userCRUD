@@ -91,7 +91,7 @@ const App = () => {
         setIsCreating(false);
       } else if (editingId) {
         // Actualizar usuario existente
-        const response = await fetch(`${API_URL}${editingId}`, {
+        const response = await fetch(`${API_URL}users/${editingId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ const App = () => {
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
       try {
-        const response = await fetch(`${API_URL}/${id}`, {
+        const response = await fetch(`${API_URL}users/${id}`, {
           method: 'DELETE',
         });
 
@@ -341,7 +341,7 @@ const App = () => {
                       <input
                         type="date"
                         name="dob"
-                        value={formData.dob}
+                        value={formData.dob.split("T")[0]}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
